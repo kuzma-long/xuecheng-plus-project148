@@ -16,6 +16,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+
 /**
  * @author Mr.M
  * @version 1.0
@@ -42,8 +45,8 @@ public class MediaFilesController {
 
     @RequestMapping(value = "/upload/coursefile", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public UploadFileResultDto upload(@RequestPart("filedata") MultipartFile filedata,
-                                      @RequestParam(value = "folder", required = false) String folder,
-                                      @RequestParam(value = "objectName", required = false) String objectName) {
+                                      @RequestParam(value = "folder",required=false) String folder,
+                                      @RequestParam(value= "objectName",required=false) String objectName) {
 
 
         Long companyId = 1232141425L;
@@ -71,7 +74,7 @@ public class MediaFilesController {
 
     @ApiOperation("预览文件")
     @GetMapping("/preview/{mediaId}")
-    public RestResponse<String> getPlayUrlByMediaId(@PathVariable String mediaId) {
+    public RestResponse<String> getPlayUrlByMediaId(@PathVariable String mediaId){
 
         //调用service查询文件的url
 

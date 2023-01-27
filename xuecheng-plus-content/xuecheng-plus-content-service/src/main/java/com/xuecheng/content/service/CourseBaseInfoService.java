@@ -49,6 +49,8 @@ public interface CourseBaseInfoService {
   */
  public CourseBaseInfoDto getCourseBaseInfo(Long courseId);
 
+ public CourseBase getCourseBase(Long courseId);
+
 
  /**
   * @description 修改课程信息

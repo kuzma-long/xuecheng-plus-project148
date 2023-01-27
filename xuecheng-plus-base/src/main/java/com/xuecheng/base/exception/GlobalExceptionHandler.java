@@ -33,6 +33,11 @@ public class GlobalExceptionHandler {
 
    String errMessage = e.getErrMessage();
 
+
+   //写异常处理的逻辑
+   //....
+
+
    return new RestErrorResponse(errMessage);
   }
 
@@ -45,7 +50,9 @@ public class GlobalExceptionHandler {
 
    log.error("捕获异常：{}",e.getMessage());
    e.printStackTrace();
-
+      if(e.getMessage().equals("不允许访问")){
+          return new RestErrorResponse("没有操作此功能的权限");
+      }
    return new RestErrorResponse(CommonError.UNKOWN_ERROR.getErrMessage());
   }
 

@@ -37,6 +37,8 @@ import java.util.List;
 @Service
 public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
 
+
+
     @Autowired
     CourseBaseMapper courseBaseMapper;
 
@@ -165,7 +167,7 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         //只要有一个插入不成功抛出异常
         if(insert<1 || insert1<1){
             log.error("创建课程过程中出错:{}",dto);
-            throw new RuntimeException("创建课程过程中出错");
+            throw new XueChengPlusException("创建课程过程中出错");
         }
 
         //返回
@@ -200,6 +202,13 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
 
         return courseBaseInfoDto;
     }
+
+    @Override
+    public CourseBase getCourseBase(Long courseId) {
+        CourseBase courseBase = courseBaseMapper.selectById(courseId);
+        return courseBase;
+    }
+
 
     @Override
     public CourseBaseInfoDto updateCourseBase(Long companyId, EditCourseDto dto) {
